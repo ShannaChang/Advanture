@@ -37,7 +37,7 @@ int main(int argc, char **argv)
     char pre_step[buffer_size],pre_pre_step[buffer_size];
     FILE *path;
 
-    //create directory name
+    /*create directory name*/
     CREATE_ROOM_NAME(RNAME_BUFFER,getpid());
     open_dir = mkdir(RNAME_BUFFER, 0755);
     if (open_dir < 0)
@@ -46,10 +46,9 @@ int main(int argc, char **argv)
     	exit(0);
     }
 
-    //change directory and generate 7 room in this directory
-    chdir(RNAME_BUFFER);
+    chdir(RNAME_BUFFER);//change directory and generate 7 room in this directory
 
-    //generate room name list
+    /*generate room name list*/
     fName[1] = "Covell";
     fName[2] = "Langton";
     fName[3] = "MU";
@@ -63,7 +62,7 @@ int main(int argc, char **argv)
 
     srand(time(NULL));
 
-    //generate 7 room 
+    /*generate 7 room*/
     for(i=1;i<=7;i++)
     {
         Rand_room_name = (rand()%10) + 1;
@@ -82,7 +81,7 @@ int main(int argc, char **argv)
         {
             name_list[i] = Rand_room_name;
             file_room = open(fName[Rand_room_name], FILE_FLAGS, FILE_PERMISSIONS);
-            if(file_room <0)
+            if(file_room < 0)
             {
                 printf("unamle to create a room.\n");
                 exit(0);
@@ -113,6 +112,7 @@ int main(int argc, char **argv)
             close(file_room);
         }
     }
+
     count_step = 0;
     //generate first room description.
     first_open = open(fName[start_room_num], O_RDWR);
@@ -454,10 +454,3 @@ int main(int argc, char **argv)
         printf("\nWHERE TO? >"); 
     }
 }
-
-// Reference:
-// generate name:
-// http://cboard.cprogramming.com/cplusplus-programming/15080-random-name-generator.html
-// rand without repetition:
-// http://www.cplusplus.com/forum/general/7784/
-
